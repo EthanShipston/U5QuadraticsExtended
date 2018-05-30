@@ -1,4 +1,4 @@
-﻿/* Ethan Shipston
+/* Ethan Shipston
  * U5QuadraticExtended
  * 5/29/2018
  * The program tells you the roots of a quadratic formula and then draws the parabola
@@ -26,7 +26,7 @@ namespace U5Quadratic
     public partial class MainWindow : Window
     {
         int xGridStretch = 10;
-        int yGridStretch = 5;
+        int yGridStretch = 1;
         public MainWindow()
         {
             InitializeComponent();
@@ -68,23 +68,22 @@ namespace U5Quadratic
             intercept1.Width = 5;
             intercept1.Stroke = Brushes.Red;
             intercept1.StrokeThickness = 5;
-            intercept1.Margin = new Thickness(((canvas.Width / 2) + (intercepts[0] * xGridStretch) - 2.5), ((canvas.Height / 2) - 2.5), 0, 0);
+            intercept1.Margin = new Thickness(((canvas.Width / 2) + (intercepts[0] * xGridStretch) - (intercept1.Width / 2)), ((canvas.Height / 2) - 2.5), 0, 0);
             canvas.Children.Add(intercept1);
             Ellipse intercept2 = new Ellipse();
             intercept2.Height = 5;
             intercept2.Width = 5;
             intercept2.Stroke = Brushes.Red;
             intercept2.StrokeThickness = 5;
-            intercept2.Margin = new Thickness(((canvas.Width / 2) + (intercepts[1] * xGridStretch) - 2.5), ((canvas.Height / 2) - 2.5), 0, 0);
+            intercept2.Margin = new Thickness(((canvas.Width / 2) + (intercepts[1] * xGridStretch) - (intercept2.Width / 2)), ((canvas.Height / 2) - 2.5), 0, 0);
             canvas.Children.Add(intercept2);
 
             //draw parabola
             double xVertex = (intercepts[0] + intercepts[1]) / 2;
             double yVertex = a * Math.Pow(xVertex, 2) + b * xVertex + c;
             Point vertex = new Point(xVertex, yVertex);
-            Point zero1 = new Point(intercepts[0], 0);
-            Point zero2 = new Point(intercepts[1], 0);
-
+            Point zero1 = new Point(((canvas.Width / 2) + (intercepts[0] * xGridStretch) - (intercept1.Width / 2)), 0);
+            Point zero2 = new Point(((canvas.Width / 2) + (intercepts[1] * xGridStretch) - (intercept2.Width / 2)), 0);
             if (a > 0)
             {
                 if (vertex.Y < 0)
@@ -92,15 +91,13 @@ namespace U5Quadratic
                     Ellipse parabola = new Ellipse();
                     parabola.Stroke = Brushes.Blue;
                     parabola.StrokeThickness = 2;
-                    parabola.Height = canvas.Height;
-                    parabola.Width = 20;
-                    parabola.Margin = new Thickness(((canvas.Width / 2) - parabola.Width / 2) + vertex.X * xGridStretch, -((canvas.Height / 2) + vertex.Y), 0, (canvas.Height / 2) + vertex.Y);
+                    parabola.Height = canvas.Height + (Math.Abs(c) * yGridStretch);
+                    parabola.Width = (Math.Abs(Math.Abs(zero1.X) - Math.Abs(zero2.X))) ;
+                    MessageBox.Show(parabola.Width.ToString());
+                    parabola.Margin = new Thickness(((canvas.Width / 2) - (parabola.Width / 2)) + vertex.X * xGridStretch, -(((canvas.Height / 2) + vertex.Y) + (Math.Abs(c) * yGridStretch)), 0, 0);
                     canvas.Children.Add(parabola);
                 }
-                
             }
-            
-
         }
     }
 }
