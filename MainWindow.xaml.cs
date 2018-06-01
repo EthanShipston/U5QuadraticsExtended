@@ -1,4 +1,4 @@
-/* Ethan Shipston
+﻿/* Ethan Shipston
  * U5QuadraticExtended
  * 5/29/2018
  * The program tells you the roots of a quadratic formula and then draws the parabola
@@ -84,6 +84,7 @@ namespace U5Quadratic
             Point vertex = new Point(xVertex, yVertex);
             Point zero1 = new Point(((canvas.Width / 2) + (intercepts[0] * xGridStretch) - (intercept1.Width / 2)), 0);
             Point zero2 = new Point(((canvas.Width / 2) + (intercepts[1] * xGridStretch) - (intercept2.Width / 2)), 0);
+            
             if (a > 0)
             {
                 if (vertex.Y < 0)
@@ -101,3 +102,4 @@ namespace U5Quadratic
         }
     }
 }
+//(y - c - b) / a = x
