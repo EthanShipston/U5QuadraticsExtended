@@ -25,8 +25,7 @@ namespace U5Quadratic
     /// </summary>
     public partial class MainWindow : Window
     {
-        //don't change
-        int xGridStretch = 1;
+        int xGridStretch = 10;
         int yGridStretch = 1;
         public MainWindow()
         {
@@ -85,37 +84,29 @@ namespace U5Quadratic
             Point vertex = new Point(xVertex, yVertex);
             Point zero1 = new Point(((canvas.Width / 2) + (intercepts[0] * xGridStretch) - (intercept1.Width / 2)), 0);
             Point zero2 = new Point(((canvas.Width / 2) + (intercepts[1] * xGridStretch) - (intercept2.Width / 2)), 0);
+
             for (int i = 0; i <= b; i++)
             {
                 bool correctValues = false;
                 double temp = b / i;
                 if (temp + i == c)
                 {
-                    if (temp * i == c)
-                    {
-                        correctValues = true;
-                    }
+                    correctValues = true;
                 }
                 if ((-1 * temp) + i == c)
                 {
-                    if ((-1 * temp) * i == c)
-                    {
-                        correctValues = true;
-                    }
+                    correctValues = true;
                 }
                 if (temp + (-1 * i) == c)
                 {
-                    if (temp * (-1 * i) == c)
-                    {
-                        correctValues = true;
-                    }
+                    correctValues = true;
                 }
                 if (correctValues = true)
                 {
-
+                    MessageBox.Show(temp.ToString() + " and " + i);
                 }
             }
-            
+
             if (a > 0)
             {
                 if (vertex.Y < 0)
@@ -124,7 +115,7 @@ namespace U5Quadratic
                     parabola.Stroke = Brushes.Blue;
                     parabola.StrokeThickness = 2;
                     parabola.Height = canvas.Height + (Math.Abs(c) * yGridStretch);
-                    parabola.Width = Math.Abs(Math.Abs() - Math.Abs());
+                    parabola.Width = Math.Abs(Math.Abs(zero2.X) - Math.Abs(zero1.X)) * xGridStretch;
                     MessageBox.Show(parabola.Width.ToString());
                     parabola.Margin = new Thickness(((canvas.Width / 2) - (parabola.Width / 2)) + vertex.X * xGridStretch, -(((canvas.Height / 2) + vertex.Y) + Math.Abs(c) * yGridStretch), 0, 0);
                     canvas.Children.Add(parabola);
